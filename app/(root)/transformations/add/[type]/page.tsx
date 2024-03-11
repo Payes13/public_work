@@ -1,11 +1,9 @@
-// http://localhost:3000/transformations/add/rock
-
-import Header from "@/components/shared/Header";
-import TransformationForm from "@/components/shared/TransformationForm";
-import { transformationTypes } from "@/constants";
-import { getUserById } from "@/lib/actions/user.actions";
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import Header from '@/components/shared/Header'
+import TransformationForm from '@/components/shared/TransformationForm';
+import { transformationTypes } from '@/constants'
+import { getUserById } from '@/lib/actions/user.actions';
+import { auth } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
 
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
   const { userId } = auth();
@@ -18,10 +16,10 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
   return (
     <>
       <Header 
-        title={transformation.title} 
-        subtitle={transformation.subTitle} 
+        title={transformation.title}
+        subtitle={transformation.subTitle}
       />
-
+    
       <section className="mt-10">
         <TransformationForm 
           action="Add"
@@ -31,7 +29,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
         />
       </section>
     </>
-  );
-};
+  )
+}
 
-export default AddTransformationTypePage;
+export default AddTransformationTypePage

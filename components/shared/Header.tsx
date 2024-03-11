@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Header = ({ title, subtitle }: { title: string, subtitle?: string }) => {
   return (
     <>
@@ -5,6 +7,6 @@ const Header = ({ title, subtitle }: { title: string, subtitle?: string }) => {
       {subtitle && <p className="p-16-regular mt-4">{subtitle}</p>}
     </>
   )
-};
+}
 
-export default Header;
+export default Header

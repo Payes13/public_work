@@ -27,13 +27,13 @@ import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } fro
 import { CustomField } from "./CustomField"
 import { useEffect, useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
-// import MediaUploader from "./MediaUploader"
-// import TransformedImage from "./TransformedImage"
+import MediaUploader from "./MediaUploader"
+import TransformedImage from "./TransformedImage"
 import { updateCredits } from "@/lib/actions/user.actions"
-// import { getCldImageUrl } from "next-cloudinary"
-// import { addImage, updateImage } from "@/lib/actions/image.actions"
+import { getCldImageUrl } from "next-cloudinary"
+import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
-// import { InsufficientCreditsModal } from "./InsufficientCreditsModal"
+import { InsufficientCreditsModal } from "./InsufficientCreditsModal"
  
 export const formSchema = z.object({
   title: z.string(),
@@ -134,7 +134,6 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     setIsSubmitting(false)
   }
 
-  // onChangeField IS OF type A function AND RETURNS NOTHING
   const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {
     const imageSize = aspectRatioOptions[value as AspectRatioKey]
 
@@ -154,7 +153,6 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     debounce(() => {
       setNewTransformation((prevState: any) => ({
         ...prevState,
-        // WE MODIFY THE type OF THE TRANSFORMATION
         [type]: {
           ...prevState?.[type],
           [fieldName === 'prompt' ? 'prompt' : 'to' ]: value 
@@ -175,7 +173,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     setNewTransformation(null)
 
     startTransition(async () => {
-      // await updateCredits(userId, creditFee)
+      await updateCredits(userId, creditFee)
     })
   }
 
@@ -188,13 +186,13 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {/* IT RETURNS THE ABSOLUTE VALUE EX. -5 = 5   */}
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         <CustomField 
           control={form.control}
           name="title"
           formLabel="Image Title"
           className="w-full"
-          // WE DESTRUCTURE THE field AND spread IT TO GET ALL OF THE props COMMING FROM THE field
           render={({ field }) => <Input {...field} className="input-field" />}
         />
 
@@ -276,24 +274,24 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
             name="publicId"
             className="flex size-full flex-col"
             render={({ field }) => (
-              // <MediaUploader 
-              //   onValueChange={field.onChange}
-              //   setImage={setImage}
-              //   publicId={field.value}
-              //   image={image}
-              //   type={type}
-              // />
+              <MediaUploader 
+                onValueChange={field.onChange}
+                setImage={setImage}
+                publicId={field.value}
+                image={image}
+                type={type}
+              />
             )}
           />
 
-          {/* <TransformedImage 
+          <TransformedImage 
             image={image}
             type={type}
             title={form.getValues().title}
             isTransforming={isTransforming}
             setIsTransforming={setIsTransforming}
             transformationConfig={transformationConfig}
-          /> */}
+          />
         </div>
 
         <div className="flex flex-col gap-4">
