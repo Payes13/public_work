@@ -1,9 +1,10 @@
+import { redirect } from 'next/navigation';
+
 import Header from '@/components/shared/Header'
 import TransformationForm from '@/components/shared/TransformationForm';
 import { transformationTypes } from '@/constants'
 import { getUserById } from '@/lib/actions/user.actions';
 import { auth } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
 
 // localhost:3000/transformations/add/[type]/page.tsx
 // localhost:3000/transformations/add/restore
@@ -13,6 +14,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
   const { userId } = auth();
   const transformation = transformationTypes[type];
 
+  // BC await getUserById(userId) WAS COMPLAINING THAT THE userId COULD BE NULL
   if(!userId) redirect('/sign-in')
 
   const user = await getUserById(userId);
@@ -24,6 +26,7 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
         subtitle={transformation.subTitle}
       />
     
+      {/* THIS user._id IS COMING FROM OUR DB */}
       <section className="mt-10">
         <TransformationForm 
           action="Add"

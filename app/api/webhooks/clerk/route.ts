@@ -74,6 +74,7 @@ export async function POST(req: Request) {
     const newUser = await createUser(user);
 
     // Set public metadata
+    // WE MERGE IDs 
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
