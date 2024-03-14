@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
+import { Button } from '../ui/button' // FILE CREATED WHEN INSTALLING A shadcn COMPONENT
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -40,8 +40,7 @@ const Sidebar = () => {
                   </li>
                 )
               })}
-              </ul>
-
+            </ul>
 
             <ul className="sidebar-nav_elements">
               {navLinks.slice(6).map((link) => {
@@ -72,6 +71,7 @@ const Sidebar = () => {
           </SignedIn>
 
           <SignedOut>
+            {/* asChild INDICATES IT WILL BE RENDERED AS A link BC THE CHILD IS A link */}
             <Button asChild className="button bg-purple-gradient bg-cover">
               <Link href="/sign-in">Login</Link>
             </Button>

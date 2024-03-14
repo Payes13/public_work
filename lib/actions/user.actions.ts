@@ -1,3 +1,4 @@
+// IT WILL MAKE THIS FILE A server action AND WILL MARK ALL export AS SERVER ACTIONS
 "use server";
 
 import { revalidatePath } from "next/cache";

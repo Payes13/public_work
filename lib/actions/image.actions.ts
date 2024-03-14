@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 
 import { v2 as cloudinary } from 'cloudinary'
 
+// DATA ABOUT THE user THAT CREATED THE img
 const populateUser = (query: any) => query.populate({
   path: 'author',
   model: User,
@@ -27,6 +28,7 @@ export async function addImage({ image, userId, path }: AddImageParams) {
     }
 
     const newImage = await Image.create({
+      // WE spread ALL THE img DATA
       ...image,
       author: author._id,
     })
@@ -102,13 +104,13 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
     await connectToDatabase();
 
     cloudinary.config({
-      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
       secure: true,
     })
 
-    let expression = 'folder=imaginify';
+    let expression = 'folder=jsm-imaginify';
 
     if (searchQuery) {
       expression += ` AND ${searchQuery}`
@@ -125,6 +127,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
     if(searchQuery) {
       query = {
         publicId: {
+          // $in = INCLUDED
           $in: resourceIds
         }
       }
