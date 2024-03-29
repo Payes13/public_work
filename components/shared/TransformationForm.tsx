@@ -98,6 +98,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         color: values.color,
       }
 
+      // ADD img FOR THE FIRST TIME
       if(action === 'Add') {
         try {
           const newImage = await addImage({

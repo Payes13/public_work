@@ -61,6 +61,7 @@ const MediaUploader = ({
       onSuccess={onUploadSuccessHandler}
       onError={onUploadErrorHandler}
     >
+      {/* open IS JUST A STATE */}
       {({ open }) => (
         <div className="flex flex-col gap-4">
           <h3 className="h3-bold text-dark-600">
@@ -82,6 +83,7 @@ const MediaUploader = ({
               </div>
             </>
           ): (
+            // open function COMES FROM CLOUDINARY
             <div className="media-uploader_cta" onClick={() => open()}>
               <div className="media-uploader_cta-image">
                 <Image 

@@ -1,11 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { connectToDatabase } from "../database/mongoose";
+import { redirect } from "next/navigation";
+
 import { handleError } from "../utils";
+import { connectToDatabase } from "../database/mongoose";
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
-import { redirect } from "next/navigation";
 
 import { v2 as cloudinary } from 'cloudinary'
 
@@ -33,6 +34,7 @@ export async function addImage({ image, userId, path }: AddImageParams) {
       author: author._id,
     })
 
+    // IT WILL HELP US TO SHOW THE NEW img INSTEAD OF THE CACHED ONE
     revalidatePath(path);
 
     return JSON.parse(JSON.stringify(newImage));
@@ -84,6 +86,7 @@ export async function getImageById(imageId: string) {
   try {
     await connectToDatabase();
 
+    // BC WE DON'T WANNA SIMPLY GET THE DATA OF THE img, WE WANNA GET THE DATA ABOUT THE author THAT CREATED THE img AS WELL  
     const image = await populateUser(Image.findById(imageId));
 
     if(!image) throw new Error("Image not found");
@@ -94,7 +97,7 @@ export async function getImageById(imageId: string) {
   }
 }
 
-// GET IMAGES
+// GET ALL IMAGES
 export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
   limit?: number;
   page: number;
@@ -110,7 +113,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       secure: true,
     })
 
-    let expression = 'folder=jsm-imaginify';
+    let expression = 'folder=imaginify';
 
     if (searchQuery) {
       expression += ` AND ${searchQuery}`
