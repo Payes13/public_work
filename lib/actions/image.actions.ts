@@ -2,13 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { v2 as cloudinary } from 'cloudinary'
 
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database/mongoose";
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
 
-import { v2 as cloudinary } from 'cloudinary'
 
 // DATA ABOUT THE user THAT CREATED THE img
 const populateUser = (query: any) => query.populate({

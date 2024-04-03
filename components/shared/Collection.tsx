@@ -14,9 +14,7 @@ import {
 import { transformationTypes } from "@/constants";
 import { IImage } from "@/lib/database/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
-
 import { Button } from "../ui/button";
-
 import { Search } from "./Search";
 
 export const Collection = ({
