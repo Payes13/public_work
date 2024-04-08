@@ -6,7 +6,6 @@ import { z } from "zod"
 import { useEffect, useState, useTransition } from "react"
 import { getCldImageUrl } from "next-cloudinary"
 import { useRouter } from "next/navigation"
-
 import {
   Select,
   SelectContent,
@@ -17,14 +16,9 @@ import {
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "@/constants"
 import { CustomField } from "./CustomField"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
@@ -45,7 +39,9 @@ export const formSchema = z.object({
 const TransformationForm = ({ action, data = null, userId, type, creditBalance, config = null }: TransformationFormProps) => {
   const transformationType = transformationTypes[type];
 
+  // CONTAINS ALL THE INFO ABOUT THE imnage THAT IS BEING TRANSFORMED
   const [image, setImage] = useState(data)
+  // THIS IS WHAT WE ARE DOING TO THE image
   const [newTransformation, setNewTransformation] = useState<Transformations | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   // ARE WE CURRENTLY DOING SOMETHING TO THE image
@@ -66,7 +62,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   } : defaultValues
 
    // 1. Define your form.
-   const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   })
@@ -142,6 +138,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {
     const imageSize = aspectRatioOptions[value as AspectRatioKey]
 
+    // HERE WE ARE UPDATING THE image state WITH THE NEW TRANSFORMATIONS (SIZE)
     setImage((prevState: any) => ({
       ...prevState,
       aspectRatio: imageSize.aspectRatio,
@@ -149,8 +146,10 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
       height: imageSize.height,
     }))
 
+    // .config IS THE CONFIGURATION OF THE TRANSFORMATION THAT WILL BE USED
     setNewTransformation(transformationType.config);
 
+    // value IS THE MODIFIED VALUE OF THE SELECT (key)
     return onChangeField(value)
   }
 
@@ -170,6 +169,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     return onChangeField(value)
   }
 
+  // HANDLES THE LOGIC OF DOING SOMETHING TO THE image
   const onTransformHandler = async () => {
     setIsTransforming(true)
 
@@ -201,7 +201,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           name="title"
           formLabel="Image Title"
           className="w-full"
-          // WE DESTRUCTURE THE field FROM THE VALUES WE ARE GETTING, WE GET ACCESS TO THE field
+          // WE DESTRUCTURE THE field FROM THE VALUES WE ARE GETTING (I THINK IT'S THE ACTUAL value INSIDE THE field), WE GET ACCESS TO THE field
           // WE spread ALL OF THE props COMING FROM THE field
           render={({ field }) => <Input {...field} className="input-field" />}
         />
@@ -221,7 +221,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* WE EXTRACT THE keys WHICH ARE THE names OF THESE OPTIONS */}
+                  {/* WE EXTRACT THE keys (1:1, 3:4, etc) WHICH ARE THE names OF THESE OPTIONS */}
                   {Object.keys(aspectRatioOptions).map((key) => (
                     <SelectItem key={key} value={key} className="select-item">
                       {aspectRatioOptions[key as AspectRatioKey].label}
@@ -242,11 +242,13 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                 type === 'remove' ? 'Object to remove' : 'Object to recolor'
               }
               className="w-full"
+              // WE render THE ACTUAL field
               render={({ field }) => (
                 <Input 
                   value={field.value}
                   className="input-field"
                   onChange={(e) => onInputChangeHandler(
+                    // WE PASS THE string OF THE field WE ARE CHANGING
                     'prompt',
                     e.target.value,
                     type,
@@ -314,6 +316,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           >
             {isTransforming ? 'Transforming...' : 'Apply Transformation'}
           </Button>
+          
           <Button 
             type="submit"
             className="submit-button capitalize"

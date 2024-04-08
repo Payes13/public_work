@@ -1,7 +1,8 @@
-import { SignIn } from '@clerk/nextjs'
+import { SignIn } from "@clerk/nextjs";
 
+// WE DID THIS BC THE auth PAGE (THE sign in ONE ONCE clerk WAS INTEGRATED) IS NOT WITHIN OUR localhost RN, WHICH MEANS WE HAVE TO CREATE ROUTE PAGES WITHIN OUR ROUTING STRUCTURE SO THAT THE sing in WINDOW APPEARS WITHIN OUR ROUTING STRUCTURE, THAT IS WHY WE ADD THE VARIABLES NEXT_PUBLIC_CLERK_SIGN_UP_URL AND NEXT_PUBLIC_CLERK_SIGN_IN_URL TO THE .env.local FILE
 const SignInPage = () => {
-  return <SignIn />
-}
+  return <SignIn />;
+};
 
-export default SignInPage
+export default SignInPage;

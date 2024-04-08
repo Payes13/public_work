@@ -12,11 +12,13 @@ import { auth } from '@clerk/nextjs';
 
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
   const { userId } = auth();
+  // THIS [type] REFERENCES THE ONE IN MY route
   const transformation = transformationTypes[type];
 
   // BC await getUserById(userId) WAS COMPLAINING THAT THE userId COULD BE NULL
   if(!userId) redirect('/sign-in')
 
+    // WE NEED THE _id FROM OUR DB INSTEAD OF THE clerkId
   const user = await getUserById(userId);
 
   return (
