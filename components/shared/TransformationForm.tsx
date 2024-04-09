@@ -165,11 +165,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         }
       }))
     }, 1000)();
-      
+    console.log('newTransformation', newTransformation);
+    
     return onChangeField(value)
   }
 
-  // HANDLES THE LOGIC OF DOING SOMETHING TO THE image
+  // HANDLES THE LOGIC OF DOING SOMETHING TO THE image WHERE IT MERGES ALL OF THE keys OF BOTH OF THESE objects AND RETURNS A NEW object
   const onTransformHandler = async () => {
     setIsTransforming(true)
 
@@ -178,6 +179,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
       deepMergeObjects(newTransformation, transformationConfig)
     )
 
+    // BC WE ARE NOT DOING IT ANYMORE
     setNewTransformation(null)
 
     startTransition(async () => {
