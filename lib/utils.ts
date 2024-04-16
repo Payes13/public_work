@@ -1,5 +1,8 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
+
+// THIS FILE WAS CREATED AUTOMATICALLY BY Shadcn WHEN WE INSTANTIATED THE CLASS cn IN app\layout.tsx
+
 import { type ClassValue, clsx } from "clsx";
 import qs from "qs";
 import { twMerge } from "tailwind-merge";

@@ -8,6 +8,7 @@ import { plans } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";
 import Checkout from "@/components/shared/Checkout";
 
+// IN THIS PAGE WE PURCHASE CREDITS
 const Credits = async () => {
   const { userId } = auth();
 

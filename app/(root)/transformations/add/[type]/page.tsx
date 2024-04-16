@@ -5,6 +5,8 @@ import { getUserById } from '@/lib/actions/user.actions';
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+// localhost:3000/transformations/add/[type]/page.tsx
+
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
   const { userId } = auth();
   const transformation = transformationTypes[type];

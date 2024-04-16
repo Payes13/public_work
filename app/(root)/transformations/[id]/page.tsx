@@ -9,6 +9,10 @@ import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
+// localhost:3000/transformations/[id]/page.tsx
+// localhost:3000/transformations/123
+// THIS IS THE id COMING FROM THE URL { params: { id } }
+// THIS WILL BE THE route FOR THE GET REQUEST
 const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
 

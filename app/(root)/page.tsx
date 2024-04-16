@@ -4,6 +4,7 @@ import { getAllImages } from "@/lib/actions/image.actions"
 import Image from "next/image"
 import Link from "next/link"
 
+// THIS IS OUR Home Page, WE BROUGHT IT FROM app/page.tsx TO HERE BECAUSE WE WANT THIS PAGE TO BE THE Home Page OF OUR APP
 const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || '';

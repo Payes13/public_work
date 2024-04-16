@@ -7,6 +7,8 @@ import Header from "@/components/shared/Header";
 import { getUserImages } from "@/lib/actions/image.actions";
 import { getUserById } from "@/lib/actions/user.actions";
 
+// localhost:3000/profile
+
 const Profile = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const { userId } = auth();
