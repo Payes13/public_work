@@ -32,6 +32,7 @@ const MediaUploader = ({
       secureURL: result?.info?.secure_url
     }))
 
+    // IT WILL TAKE INTO ACC THAT THE form CHANGED AND THAT IT WILL UPDATE THE publicId WITHIN OUR form 
     onValueChange(result?.info?.public_id)
 
     toast({
@@ -61,6 +62,7 @@ const MediaUploader = ({
       onSuccess={onUploadSuccessHandler}
       onError={onUploadErrorHandler}
     >
+      {/* open IS JUST A state */}
       {({ open }) => (
         <div className="flex flex-col gap-4">
           <h3 className="h3-bold text-dark-600">
@@ -82,6 +84,7 @@ const MediaUploader = ({
               </div>
             </>
           ): (
+            // open() IS COMING FROM CLOUDINARY
             <div className="media-uploader_cta" onClick={() => open()}>
               <div className="media-uploader_cta-image">
                 <Image 

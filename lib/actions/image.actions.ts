@@ -1,3 +1,5 @@
+// HERE WE CALL Cloudinary APIs
+
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -33,6 +35,7 @@ export async function addImage({ image, userId, path }: AddImageParams) {
       author: author._id,
     })
 
+    // ALLOWS US TO SHOW IN OUR CASE, THE NEW IMAGE THAT WAS JUST CREATED AND NOT JUST KEEP WHAT WAS CACHED
     revalidatePath(path);
 
     return JSON.parse(JSON.stringify(newImage));
@@ -55,7 +58,7 @@ export async function updateImage({ image, userId, path }: UpdateImageParams) {
     const updatedImage = await Image.findByIdAndUpdate(
       imageToUpdate._id,
       image,
-      { new: true }
+      { new: true } // WE CREATE A NEW INSTANCE OF THAT OBJECT
     )
 
     revalidatePath(path);
@@ -79,11 +82,13 @@ export async function deleteImage(imageId: string) {
   }
 }
 
-// GET IMAGE
+// GET IMAGE BY ID
 export async function getImageById(imageId: string) {
   try {
     await connectToDatabase();
 
+    // SINCE WE DON'T JUST WANT TO GET THE data OF THE IMAGE, WE WANNA GET THE DATA OF THE user WHO CREATED THAT IMAGE AS WELL
+    // WE ARE GETTING WHICH user CREATED IT
     const image = await populateUser(Image.findById(imageId));
 
     if(!image) throw new Error("Image not found");

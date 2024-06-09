@@ -51,17 +51,21 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
             sizes={"(max-width: 767px) 100vw, 50vw"}
             placeholder={dataUrl as PlaceholderValue}
             className="transformed-image"
+            // WE CHECK IF WE HAVE ACCESS TO THE setIsTransforming STATE
             onLoad={() => {
               setIsTransforming && setIsTransforming(false);
             }}
             onError={() => {
               debounce(() => {
                 setIsTransforming && setIsTransforming(false);
+                // IF ANYTHING HAPPENS AFTER 8 sec, THEN WE CAN ASSUME THAT AN ERROR ACURRED
               }, 8000)()
             }}
+            // IT CONTAINS ALL OF THE IMAGE TRANSFORMATIONS THAT WE WANT TO APPLY TO THAT IMAGE
             {...transformationConfig}
           />
 
+          {/* WHILE WE ARE TRANSFORMING... */}
           {isTransforming && (
             <div className="transforming-loader">
               <Image 
