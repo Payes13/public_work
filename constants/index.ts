@@ -20,14 +20,14 @@ export const navLinks = [
     icon: "/assets/icons/filter.svg",
   },
   {
-    label: "Restore Image",
-    route: "/transformations/add/restore",
-    icon: "/assets/icons/image.svg",
-  },
-  {
     label: "Size Modification",
     route: "/transformations/add/fill",
     icon: "/assets/icons/stars.svg",
+  },
+  {
+    label: "Refine Image",
+    route: "/transformations/add/restore",
+    icon: "/assets/icons/image.svg",
   },
   {
     label: "Profile",
@@ -123,7 +123,7 @@ export const transformationTypes = {
   restore: {
     type: "restore",
     title: "Restore Image",
-    subTitle: "Refine images by removing noise and imperfections",
+    subTitle: "Refine images by removing noise and imperfections using AI",
     config: { restore: true },
     icon: "image.svg",
   },
@@ -144,7 +144,7 @@ export const transformationTypes = {
   remove: {
     type: "remove",
     title: "Remove Object",
-    subTitle: "Identify and eliminate objects from images",
+    subTitle: "Identify and eliminate objects from images using AI",
     config: {
       remove: { prompt: "", removeShadow: true, multiple: true },
     },
@@ -153,7 +153,7 @@ export const transformationTypes = {
   recolor: {
     type: "recolor",
     title: "Recolor Object",
-    subTitle: "Identify and recolor objects from the image",
+    subTitle: "Identify and recolor objects from the image using AI",
     config: {
       recolor: { prompt: "", to: "", multiple: true },
     },
