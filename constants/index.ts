@@ -20,7 +20,7 @@ export const navLinks = [
     icon: "/assets/icons/filter.svg",
   },
   {
-    label: "Size Modification",
+    label: "Generate Fill",
     route: "/transformations/add/fill",
     icon: "/assets/icons/stars.svg",
   },
@@ -136,8 +136,8 @@ export const transformationTypes = {
   },
   fill: {
     type: "fill",
-    title: "Size Modification",
-    subTitle: "Enhance an image's dimensions using AI outpainting",
+    title: "Generate Fill",
+    subTitle: "Enhance an image's dimensions and fill using AI outpainting",
     config: { fillBackground: true },
     icon: "stars.svg",
   },
