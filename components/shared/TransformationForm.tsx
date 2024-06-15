@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useToast } from "@/components/ui/use-toast"
 
 import {
   Select,
@@ -54,6 +55,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   // useTransition() LETS YOU UPDATE THE state WITHOUT BLOCKING THE UI
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
+  const { toast } = useToast()
 
   const initialValues = data && action === 'Update' ? {
     title: data?.title,
@@ -136,6 +138,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
     }
 
     setIsSubmitting(false)
+
+    toast({
+      title: 'Image saved successfully',
+      duration: 5000,
+      className: 'success-toast' 
+    })
   }
 
   const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {
@@ -181,6 +189,12 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
     startTransition(async () => {
       await updateCredits(userId, creditFee)
+    })
+
+    toast({
+      title: '1 credit has been deducted from your account',
+      duration: 5000,
+      className: 'success-toast' 
     })
   }
 
