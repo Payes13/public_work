@@ -3,31 +3,31 @@ export const navLinks = [
     label: "Home",
     route: "/",
     icon: "/assets/icons/home.svg",
-  },
+  },  
   {
-    label: "Image Restore",
-    route: "/transformations/add/restore",
-    icon: "/assets/icons/image.svg",
-  },
-  {
-    label: "Generative Fill",
-    route: "/transformations/add/fill",
-    icon: "/assets/icons/stars.svg",
-  },
-  {
-    label: "Object Remove",
+    label: "Remove Object",
     route: "/transformations/add/remove",
     icon: "/assets/icons/scan.svg",
   },
   {
-    label: "Object Recolor",
+    label: "Remove Background",
+    route: "/transformations/add/removeBackground",
+    icon: "/assets/icons/camera.svg",
+  },
+  {
+    label: "Recolor Object",
     route: "/transformations/add/recolor",
     icon: "/assets/icons/filter.svg",
   },
   {
-    label: "Background Remove",
-    route: "/transformations/add/removeBackground",
-    icon: "/assets/icons/camera.svg",
+    label: "Restore Image",
+    route: "/transformations/add/restore",
+    icon: "/assets/icons/image.svg",
+  },
+  {
+    label: "Size Modification",
+    route: "/transformations/add/fill",
+    icon: "/assets/icons/stars.svg",
   },
   {
     label: "Profile",
@@ -129,21 +129,21 @@ export const transformationTypes = {
   },
   removeBackground: {
     type: "removeBackground",
-    title: "Background Remove",
+    title: "Remove Background",
     subTitle: "Removes the background of the image using AI",
     config: { removeBackground: true },
     icon: "camera.svg",
   },
   fill: {
     type: "fill",
-    title: "Generative Fill",
+    title: "Size Modification",
     subTitle: "Enhance an image's dimensions using AI outpainting",
     config: { fillBackground: true },
     icon: "stars.svg",
   },
   remove: {
     type: "remove",
-    title: "Object Remove",
+    title: "Remove Object",
     subTitle: "Identify and eliminate objects from images",
     config: {
       remove: { prompt: "", removeShadow: true, multiple: true },
@@ -152,7 +152,7 @@ export const transformationTypes = {
   },
   recolor: {
     type: "recolor",
-    title: "Object Recolor",
+    title: "Recolor Object",
     subTitle: "Identify and recolor objects from the image",
     config: {
       recolor: { prompt: "", to: "", multiple: true },
