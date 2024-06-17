@@ -18,7 +18,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           Unleash Your Creative Vision With lostcanvas and AI
         </h1>
 
-        <p className="p-22-medium text-center text-white w-11/12">
+        <p className="p-22-medium text-justify max-sm:mt-4 text-white w-11/12">
           Welcome to our cutting-edge SaaS application, where state-of-the-art AI transforms your images with ease. Effortlessly remove unwanted objects and backgrounds, recolor specific elements, and intelligently fill gaps for a flawless finish. Enhance image quality and detail with our refine feature. Experience the future of image editing with our comprehensive AI-powered tools, designed for all your creative needs.
         </p>
 {/* 
@@ -38,7 +38,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
         </ul> */}
       </section>
 
-      <section className="sm:mt-12">
+      <section className="sm:mt-12 max-sm:mt-4">
         <Collection 
           hasSearch={true}
           images={images?.data}
