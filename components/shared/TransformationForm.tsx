@@ -37,7 +37,9 @@ import { useRouter } from "next/navigation"
 import { InsufficientCreditsModal } from "./InsufficientCreditsModal"
  
 export const formSchema = z.object({
-  title: z.string(),
+  title: z.string().min(2, {
+    message: 'Image Title must be at least 2 characters long'
+  }),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
   prompt: z.string().optional(),
