@@ -16,12 +16,6 @@ import {
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from "@/constants"
@@ -201,7 +195,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
   }
 
   useEffect(() => {
-    // FOR THESE types WE CAN IMMEDIATELY APPLY A TRANSFORMATION AS SOON AS WE UPLOAD THE IMAGE BC THEY ONLY HAVE ONE FIELD IN THE form
+    // FOR THESE types WE CAN IMMEDIATELY ENABLE THE APPLY TRANSFORMATION BTN AS SOON AS WE UPLOAD THE IMAGE BC THEY ONLY HAVE ONE FIELD IN THE form
     if(image && (type === 'restore' || type === 'removeBackground')) {
       setNewTransformation(transformationType.config)
     }
@@ -231,6 +225,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
             render={({ field }) => (
               <Select
                 onValueChange={(value) => onSelectFieldHandler(value, field.onChange)}
+                // WE ADD THE value prop SO WE KNOW WHEN THE value HAS CHANGED. IF WE DON'T ADD IT, WHEN WE DO A MODIFICATION ON THIS FEATURE, IT WON'T APPLY TRANSFORMATION BC DOESN'T RECOGNIZE THAT WE CHANGED THE size OF THE image
                 value={field.value}
               >
                 <SelectTrigger className="select-field">
@@ -295,6 +290,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           </div>
         )}
 
+        {/* WE PUT THE MediaUploader inside our CustomField so we can immediately get its data within our form */}
         <div className="media-uploader-field">
           <CustomField 
             control={form.control}

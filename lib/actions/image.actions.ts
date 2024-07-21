@@ -12,6 +12,7 @@ import { redirect } from "next/navigation";
 import { v2 as cloudinary } from 'cloudinary'
 
 // DATA ABOUT THE user THAT CREATED THE img
+// DOESN'T EXPLAIN WHERE .populate() COMES FROM
 const populateUser = (query: any) => query.populate({
   path: 'author',
   model: User,
@@ -125,6 +126,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       .expression(expression)
       .execute();
 
+    // WE GET THE images FROM OUR DB AS WELL
     const resourceIds = resources.map((resource: any) => resource.public_id);
 
     let query = {};
@@ -138,9 +140,11 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
       }
     }
 
+    // IS THE NUMBER OF images WE WANT TO SKIP BC WE ARE ON THE SECOND PAGE FOR EXAMPLE
     const skipAmount = (Number(page) -1) * limit;
 
     const images = await populateUser(Image.find(query))
+      // NEWER images ON TOP FIRST
       .sort({ updatedAt: -1 })
       .skip(skipAmount)
       .limit(limit);

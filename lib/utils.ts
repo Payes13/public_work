@@ -112,13 +112,14 @@ export const getImageSize = (
   return image?.[dimension] || 1000;
 };
 
-// DOWNLOAD IMAGE
+// DOWNLOAD IMAGE (CREATED BY CHATGPT)
 export const download = (url: string, filename: string) => {
   if (!url) {
     throw new Error("Resource URL not provided! You need to provide one");
   }
 
   fetch(url)
+    // .blob() BASICALLY CONTAINS THE image
     .then((response) => response.blob())
     .then((blob) => {
       const blobURL = URL.createObjectURL(blob);

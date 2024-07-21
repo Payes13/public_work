@@ -15,17 +15,17 @@ const Home = async ({ searchParams }: SearchParamProps) => {
     <>
       <section className="home">
         <h1 className="home-heading">
-          Unleash Your Creative Vision With lostcanvas and AI
+          Unleash Your Creative Vision With lostcanvas & Artificial Intelligence
         </h1>
 
         <p className="p-22-medium text-justify max-sm:mt-4 text-white w-11/12">
           Welcome to our cutting-edge SaaS application, where state-of-the-art AI transforms your images with ease. Effortlessly <b>remove objects</b> and <b>backgrounds</b>, <b>recolor</b> specific elements, and intelligently <b>fill gaps</b> for a flawless finish. Enhance <b>image quality</b> and detail with our <b>refine feature</b>. You can <b>download</b> your images too. Experience the future of image editing with our comprehensive AI-powered tools, designed for all your creative needs. <br/><br/>
 
-          Sign up to start using our application <b>for free!</b>
+          Sign up to start using our application <b>for free!</b> <br/><br/>
         </p>
-{/* 
+
         <ul className="flex-center w-full gap-20">
-          {navLinks.slice(1, 5).map((link) => (
+          {navLinks.slice(1, 6).map((link) => (
             <Link
               key={link.route}
               href={link.route}
@@ -37,7 +37,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
               <p className="p-14-medium text-center text-white">{link.label}</p>
             </Link>
           ))}
-        </ul> */}
+        </ul>
       </section>
 
       <section className="sm:mt-12 max-sm:mt-4">
