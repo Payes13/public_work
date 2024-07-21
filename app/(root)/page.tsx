@@ -24,7 +24,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           Sign up to start using our application <b>for free!</b> <br/><br/>
         </p>
 
-        <ul className="flex-center w-full gap-20">
+        <ul className="w-full gap-20 hidden md:flex-center">
           {navLinks.slice(1, 6).map((link) => (
             <Link
               key={link.route}
